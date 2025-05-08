@@ -29,8 +29,41 @@ STEP-7: The junction character where these two meet forms the cipher character.
 STEP-8: Repeat the above steps to generate the entire cipher text.
 
 
-## PROGRAM
+## PROGRAM :
+```
+def encrypt(text, key):
+    return ''.join(
+        chr((ord(t.upper()) - 65 + ord(key[i % len(key)].upper()) - 65) % 26 + 65)
+        for i, t in enumerate(text) if t.isalpha()
+    )
 
-## OUTPUT
+def decrypt(text, key):
+    return ''.join(
+        chr((ord(t.upper()) - 65 - (ord(key[i % len(key)].upper()) - 65) + 26) % 26 + 65)
+        for i, t in enumerate(text) if t.isalpha()
+    )
 
-## RESULT
+choice = input("1. Encrypt  2. Decrypt\nEnter choice: ")
+
+if choice == '1':
+    text = input("Enter plain text: ")
+    key = input("Enter key: ")
+    print("Cipher Text:", encrypt(text, key))
+
+elif choice == '2':
+    text = input("Enter cipher text: ")
+    key = input("Enter key: ")
+    print("Plain Text:", decrypt(text, key))
+else:
+    print("Invalid choice")
+```
+
+## OUTPUT :
+![Screenshot 2025-04-21 223036](https://github.com/user-attachments/assets/36295ba6-3b83-46f5-a455-d41f0e77653a)
+
+![Screenshot 2025-04-21 223112](https://github.com/user-attachments/assets/efbb7c80-d63f-4ff9-a5d0-12cf961db3bd)
+
+![Screenshot 2025-04-21 223131](https://github.com/user-attachments/assets/0b37fcd7-1b85-4d6f-9e02-8f0a93cda917)
+
+## RESULT :
+Hence the given vignere cipher program executed successfully.
